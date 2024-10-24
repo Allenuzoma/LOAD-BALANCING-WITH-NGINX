@@ -5,9 +5,8 @@
 Load Balancer Solution With Nginx and SSL/TLS
 
 
-Part 1 - Configure Nginx As A Load Balancer
+**Part 1: Configure Nginx As A Load Balancer**
 
-We will create a new load balancer
 
 1. We will create an EC2 VM based on Ubuntu Server 20.04 LTS and name it Nginx-LB.
 
@@ -25,9 +24,9 @@ We will create a new load balancer
  ![etc hosts file](https://github.com/user-attachments/assets/e66258f7-d114-4c0b-946e-9cddb9411cc8)
 
 
-3. Next we will Install and configure Nginx as a load balancer to point the traffic to the resolvable DNS names of the webservers.
+3. Next we will install and configure Nginx as a load balancer to point the traffic to the resolvable DNS names of the webservers.
  
- Update the instance and Install Nginx: 
+ Update the instance and install Nginx using the following command: 
 
     #update the apt repository
     sudo apt update
@@ -40,13 +39,46 @@ We will create a new load balancer
 
    ![nginx running on cli](https://github.com/user-attachments/assets/fd0ddad2-4592-4e1c-80fd-be35505f2aa6)
 
-5. Confirm that nginx is running on the browser by using the IP address of the load balancer
+5. Confirm that nginx is running on the browser by using the IP address of the load balancer with format http://<public-ip-add>
 
 ![verify nginx browser](https://github.com/user-attachments/assets/891972b3-a870-4951-bb2b-ed20cf958933)
 
-        
+ We can see the default page for nginx on the browser.      
 
-4. Open the default nginx configuration file
+4. Now that the nginx is up and running, we will create a configuration file specific to our project, this configuration file will listen on port 80 and will direct the nginx file server to the domain which will be created shortly.
+   To create the configuration file, enter the following command:
+
+       sudo nano /etc/nginx/conf.d/nginx-lb.conf
+
+   Paste the following configuration data in the newly created file:
+
+      # Define the group of application servers
+upstream app_servers {
+    server web01 weight=5;
+    server web02 weight=5;
+    server web03 weight=5;
+}
+
+server {
+    listen 80;
+    server_name example.com; # Replace this with the public IP or domain name of the server
+
+    location / {
+        proxy_pass http://app_servers;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+
+
+
+   
+   
+
+7. we will have to open the default nginx configuration file. Usually we can paste our configuration file
 
 
    sudo nano /etc/nginx/nginx.conf
