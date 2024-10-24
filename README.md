@@ -54,26 +54,26 @@ Load Balancer Solution With Nginx and SSL/TLS
 
 
 
-
-      # Define the group of application servers
-upstream app_servers {
-    server web01 weight=5;
-    server web02 weight=5;
-    server web03 weight=5;
-}
-
-server {
-    listen 80;
-    server_name example.com; # Replace this with the public IP or domain name of the server
-
-    location / {
-        proxy_pass http://app_servers;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
+      
+            # Define the group of application servers
+      upstream app_servers {
+          server web01 weight=5;
+          server web02 weight=5;
+          server web03 weight=5;
+      }
+      
+      server {
+          listen 80;
+          server_name example.com; # Replace this with the public IP or domain name of the server
+      
+          location / {
+              proxy_pass http://app_servers;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+          }
+      }
 
 
 
