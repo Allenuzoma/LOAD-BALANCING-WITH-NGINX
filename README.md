@@ -55,7 +55,7 @@ Load Balancer Solution With Nginx and SSL/TLS
 
     
           
-                # Define the group of application servers
+          # Define the group of application servers
           upstream app_servers {
               server web01 weight=5;
               server web02 weight=5;
