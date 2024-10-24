@@ -45,7 +45,8 @@ Load Balancer Solution With Nginx and SSL/TLS
 
  We can see the default page for nginx on the browser.      
 
-4. Now that the nginx is up and running, we will create a configuration file specific to our project, this configuration file will listen on port 80 and will direct the nginx file server to the domain which will be created shortly.
+4. Now that the nginx is up and running, we will create a configuration file specific to our project in, this configuration file will listen on port 80 and will direct the nginx file   
+   server to the domain which will be created shortly.
    To create the configuration file, enter the following command:
 
        sudo nano /etc/nginx/conf.d/nginx-lb.conf
@@ -64,7 +65,8 @@ Load Balancer Solution With Nginx and SSL/TLS
           
           server {
               listen 80;
-              server_name example.com; # Replace this with the public IP or domain name of the server
+              #server_name example.com; # Replace this with the public IP or domain name of the server
+              server_name cloudchief.com.ng;  
           
               location / {
                   proxy_pass http://app_servers;
@@ -78,10 +80,7 @@ Load Balancer Solution With Nginx and SSL/TLS
 
 
 
-   
-   
-
-7. we will have to open the default nginx configuration file. Usually we can paste our configuration file
+   7. The orevious
 
 
    sudo nano /etc/nginx/nginx.conf
