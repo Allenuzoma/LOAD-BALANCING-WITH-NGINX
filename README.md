@@ -1,6 +1,20 @@
 # LOAD-BALANCING-WITH-NGINX
 
-![image](https://github.com/user-attachments/assets/d5c0b8ee-4983-480d-a17e-6d588ab6a8c7)
+
+Nginx is a high-performance, open-source web server known for its efficiency, scalability, and flexibility. It's widely used in various web applications, including three-tier architectures.
+
+In a three-tier web application, Nginx can play multiple crucial roles:
+
+Reverse Proxy: Nginx can act as a reverse proxy, load balancing requests across multiple application servers. This improves performance, fault tolerance, and scalability.
+
+Static Content Serving: Nginx can efficiently serve static content like images, CSS, and JavaScript files, offloading this task from the application servers.
+
+Caching: Nginx can cache frequently accessed content, reducing the load on the application servers and improving response times.
+
+Web Socket Support: Nginx supports web sockets, enabling real-time communication between clients and servers, which is essential for many modern applications.
+
+![nginx diagram](https://github.com/user-attachments/assets/5a61aa42-eaab-4d39-9ccb-55bc8607f1e9)
+
 
 Load Balancer Solution With Nginx and SSL/TLS
 
