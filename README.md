@@ -45,9 +45,9 @@ Load Balancer Solution With Nginx and SSL/TLS
 
  We can see the default page for nginx on the browser.      
 
-4. Now that the nginx is up and running, we will create a configuration file specific to our project in, this configuration file will listen on port 80 and will direct the nginx file   
-   server to the domain which will be created shortly.
-   To create the configuration file, enter the following command:
+6. Now that the nginx is up and running, we will create a configuration file specific to our project in, this configuration file will listen on port 80 and will direct the nginx file server to the domain which will be created shortly.
+
+  To create the configuration file, enter the following command:
 
        sudo nano /etc/nginx/conf.d/nginx-lb.conf
 
@@ -58,8 +58,8 @@ Load Balancer Solution With Nginx and SSL/TLS
           
           # Define the group of application servers
           upstream app_servers {
-              server web01 weight=5;
-              server web02 weight=5;
+              server web01 weight=10;
+              server web02 weight=10;
               server web03 weight=5;
           }
           
@@ -79,65 +79,42 @@ Load Balancer Solution With Nginx and SSL/TLS
     
 
 
-
-   7. The orevious
-
-
-   sudo nano /etc/nginx/nginx.conf
+5. The config file in the step above was created was created so as to not   
+  tamper with the original nginx configuration file nginx.conf which can be 
+  accessed with the command:
 
 
+         sudo nano /etc/nginx/nginx.conf
+
+
+   ![default nginx conf edited to remove the site enabled](https://github.com/user-attachments/assets/43d55c26-7124-4497-9e05-00e40b9aa391)
+
+        
+From this nginx.conf file I edited the code to include the .conf file I created specially for my project. I also commented out the nginx/sites-enabled line so as not to have the nginx server reading from or serving the default webpage from the http part of the code.
+
+I added the line for the config file to refer to the newly created config file:
+
+    include /etc/nginx/conf.d/*.conf;
+
+And commented out:
+
+    include /etc/nginx/sites-enabled/*;
+    
+    
 
 
 
-    #insert following configuration into http section
-    upstream myproject {
-    server Web1 weight=5;
-    server Web2 weight=5;
-    }
-server {
-listen 80;
-server_name www.domain.com;
-location / {
-proxy_pass http://myproject;
-}
-}
-#comment out this line
-# include /etc/nginx/sites-enabled/*;
 
-Restart Nginx and make sure the service is up and running:
-
-
-(e.g. Web1 and Web2) and their local IP addresses
-
-sudo vi /etc/nginx/nginx.conf
-#insert following configuration into http section
-upstream myproject {
-server Web1 weight=5;
-server Web2 weight=5;
-}
-server {
-listen 80;
-server_name www.domain.com;
-location / {
-proxy_pass http://myproject;
-}
-}
-#comment out this line
-# include /etc/nginx/sites-enabled/*;
-
-
-Restart Nginx and make sure the service is up and running
-sudo systemctl restart nginx
-sudo systemctl status nginx
-
+Now restart Nginx and make sure the service is up and running:
 
     sudo systemctl restart nginx
     sudo systemctl status nginx
 
 
 
-Part 2 - Register a new domain name and confi gure secured
-connection using SSL/TLS certifi cates
+
+**Part 2 - Register a new domain name and configure secured connection using SSL/TLS certificates**
+
 Let us make necessary configurations to make connections to our Tooling
 Web Solution secured!
 In order to get a valid SSL certificate - you need to register a new domain
@@ -145,27 +122,34 @@ name, you can do it using any Domain name registrar - a company that
 manages reservation of domain names. The most popular ones
 are: Godaddy.com, Domain.com, Bluehost.com.
 1. Register a new domain name with any registrar of your choice in any
-domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
-2. Assign an Elastic IP to your Nginx LB server and associate your
-domain name with this Elastic IP
-48% COMPLETE
- Previous Lesson
-You might have noticed, that every time you restart or stop/start your EC2
-instance - you get a new public IP address. When you want to associate
-your domain name - it is better to have a static IP address that does not
-change after reboot. Elastic IP is the solution for this problem, learn how to
-allocate an Elastic IP and associate it with an EC2 server on this page.
-3. Update A record in your registrar to point to Nginx LB using Elastic IP
+domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other.)
+
+In my case I registered a domain **cloudchief.com.ng** on registrar GO54.com
+
+![domain details go54](https://github.com/user-attachments/assets/52b2c612-0711-4d82-b2c5-b3926188e9b0)
+
+
+2. I assigned an Elastic IP to my Nginx LB server, this way my nginx server will have a constant IP address which will not change after the server is rebooted.
+
+
+![associating elastic ip](https://github.com/user-attachments/assets/bfe1e22b-ce96-4f27-9cae-79583b27de0c)
+
+3. Next, I associated the domain name with this Elastic IP.
+   
+![associating elastic ip](https://github.com/user-attachments/assets/555a90ef-cfd6-489e-8fd1-527f28af230e)
+
+
+4. Update A record in your registrar to point to Nginx LB using Elastic IP
 address
-Learn how associate your domain name to your Elastic IP on this page.
-Side Self Study: Read about different DNS record types and learn what
-they are used for.
+
+  I a
+
 Check that your Web Servers can be reached from your browser using new
 domain name using HTTP protocol - http://<your-domain-name.com>
-4. Configure Nginx to recognize your new domain name
+5. Configure Nginx to recognize your new domain name
 Update your nginx.conf with server_name www.<your-domain-name.com> instead
 of server_name www.domain.com
-5. Install certbot and request for an SSL/TLS certificate
+6. Install certbot and request for an SSL/TLS certificate
 Make sure snapd service is active and running
 sudo systemctl status snapd
 Install certbot
@@ -181,7 +165,7 @@ You shall be able to access your website by using HTTPS protocol (that
 uses TCP port 443) and see a padlock pictogram in your browser's search
 string. Click on the padlock icon and you can see the details of the
 certificate issued for your website.
-6. Set up periodical renewal of your SSL/TLS certificate
+7. Set up periodical renewal of your SSL/TLS certificate
 By default, LetsEncrypt certificate is valid for 90 days, so it is
 recommended to renew it at least every 60 days or more frequently.
 You can test renewal command in dry-run mode
