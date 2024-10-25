@@ -34,7 +34,7 @@ Load Balancer Solution With Nginx and SSL/TLS
 
 3. Next, we have to update the /etc/hosts file. This file is used for the local DNS for storing the Web Servers' names(e.g. Web1 and Web2) and their local IP addresses.
 
-    sudo nano etc/hosts
+       sudo nano etc/hosts
 
  
 
@@ -52,7 +52,7 @@ Load Balancer Solution With Nginx and SSL/TLS
 
 5. Verify that the nginx is running on the cli using the command:
 
-    sudo systemctl status nginx
+       sudo systemctl status nginx
 
    ![nginx running on cli](https://github.com/user-attachments/assets/fd0ddad2-4592-4e1c-80fd-be35505f2aa6)
 
