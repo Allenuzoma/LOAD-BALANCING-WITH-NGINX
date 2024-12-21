@@ -56,7 +56,10 @@ Load Balancer Solution With Nginx and SSL/TLS
 
    ![nginx running on cli](https://github.com/user-attachments/assets/fd0ddad2-4592-4e1c-80fd-be35505f2aa6)
 
-6. Confirm that nginx is running on the browser by using the IP address of the load balancer with format http://<public-ip-add>
+6. Confirm that nginx is running on the browser by using the IP address of the load balancer with format
+
+
+      http://<public-ip-add of nginx-lb>
 
   ![verify nginx browser](https://github.com/user-attachments/assets/891972b3-a870-4951-bb2b-ed20cf958933)
 
