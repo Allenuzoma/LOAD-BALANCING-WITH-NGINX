@@ -66,7 +66,7 @@ Load Balancer Solution With Nginx and SSL/TLS
 
  We can see the default page for nginx on the browser.      
 
-7. Now that the nginx is up and running, we will create a configuration file specific to our project in, this configuration file will listen on port 80 and will direct the nginx file server to the domain which will be created shortly.
+7. Now that the nginx is up and running, we will create a configuration file specific to our project, this configuration file will listen on port 80 and will direct the nginx file server to the domain which will be created shortly.
 
   To create the configuration file, enter the following command:
 
@@ -79,9 +79,9 @@ Load Balancer Solution With Nginx and SSL/TLS
           
           # Define the group of application servers
           upstream app_servers {
-              server web01 weight=10;
-              server web02 weight=10;
-              server web03 weight=5;
+              server web1 weight=10;
+              server web2 weight=10;
+              server web3 weight=5;
           }
           
           server {
@@ -100,7 +100,7 @@ Load Balancer Solution With Nginx and SSL/TLS
     
 
 
-8. The config file in the step above was created was created so as to not   
+8. The config file in the step above was created so as to not   
   tamper with the original nginx configuration file nginx.conf which can be 
   accessed with the command:
 
