@@ -177,16 +177,22 @@ Check that your Web Servers can be reached from your browser using new
 domain name using HTTP protocol - http://<your-domain-name.com>
 
 5. We have to install certbot and request for an SSL/TLS certificate
-   
-    #First make sure snapd service is active and running:
 
-      sudo systemctl status snapd
+
+
+         #First make sure snapd service is active and running:
+
+         sudo systemctl status snapd
+
+
+
+         #Install certbot
+    
+         sudo snap install --classic certbot
+
    
-    #Install certbot
     
-      sudo snap install --classic certbot
-    
-6. Request your certificate (just follow the certbot instructions - you 
+5. Request your certificate (just follow the certbot instructions - you 
  will need to choose which domain you want your certificate to be issued 
  for, domain name will be looked up from the .conf file.
 
@@ -195,7 +201,7 @@ domain name using HTTP protocol - http://<your-domain-name.com>
     
       sudo certbot --nginx
     
-7. Test secured access to the Web Solution by trying to reach       
+6. Test secured access to the Web Solution by trying to reach       
 
        https://<your￾domain-name.com>
    
