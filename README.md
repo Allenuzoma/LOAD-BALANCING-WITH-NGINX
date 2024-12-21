@@ -135,6 +135,9 @@ Load Balancer Solution With Nginx and SSL/TLS
 
 
 
+**Note:**Ensure that the web servers listed in the /etc/nginx/conf.d/nginx-lb.conf file matches those in the /etc/hosts, else restarting nginx returns an error message. 
+
+
 
 **Part 2 - Register a new domain name and configure secured connection using SSL/TLS certificates**
 
