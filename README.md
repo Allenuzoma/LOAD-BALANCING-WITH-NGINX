@@ -34,7 +34,7 @@ Load Balancer Solution With Nginx and SSL/TLS
 
 3. Next, we have to update the /etc/hosts file. This file is used for the local DNS for storing the Web Servers' names(e.g. Web1 and Web2) and their local IP addresses.
 
-       sudo nano etc/hosts
+       sudo nano /etc/hosts
 
  
 
