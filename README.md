@@ -100,9 +100,7 @@ Load Balancer Solution With Nginx and SSL/TLS
     
 
 
-8. The config file in the step above was created so as to not   
-  tamper with the original nginx configuration file nginx.conf which can be 
-  accessed with the command:
+8. The config file in the step above was created so as to not tamper with the original nginx configuration file nginx.conf which can be accessed with the command:
 
 
          sudo nano /etc/nginx/nginx.conf
