@@ -237,7 +237,8 @@ You can test renewal command in dry-run mode
 periodically. Let us configure a cronjob to run the command twice a day.
 
 10. To do so, lets edit the crontab file with the following command:
-crontab -e
+
+
 
   Add following line:
 
