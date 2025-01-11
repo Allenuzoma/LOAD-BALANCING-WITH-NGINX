@@ -197,9 +197,8 @@ domain name using HTTP protocol - http://<your-domain-name.com>
  for, domain name will be looked up from the .conf file.
 
 
-      sudo ln -s /snap/bin/certbot /usr/bin/certbot
+         sudo ln -s /snap/bin/certbot /usr/bin/certbot
     
-      sudo certbot --nginx
     
 6. Test secured access to the Web Solution by trying to reach       
 
@@ -237,6 +236,9 @@ You can test renewal command in dry-run mode
 periodically. Let us configure a cronjob to run the command twice a day.
 
 10. To do so, lets edit the crontab file with the following command:
+
+
+       crontab -e
 
 
 
