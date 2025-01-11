@@ -228,7 +228,7 @@ certificate issued for your website.
 recommended to renew it at least every 60 days or more frequently.
 You can test renewal command in dry-run mode
 
-    sudo certbot renew --dry-run
+          sudo certbot renew --dry-run
 
   ![sudo certbot renew --dry-run](https://github.com/user-attachments/assets/c695aa3d-527f-4541-8faf-dacf9066a298)
 
@@ -238,7 +238,7 @@ periodically. Let us configure a cronjob to run the command twice a day.
 10. To do so, lets edit the crontab file with the following command:
 
 
-       crontab -e
+             crontab -e
 
 
 
