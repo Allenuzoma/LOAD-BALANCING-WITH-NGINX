@@ -198,9 +198,11 @@ domain name using HTTP protocol - http://<your-domain-name.com>
 
 
          sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+         sudo certbot --nginx
     
     
-6. Test secured access to the Web Solution by trying to reach       
+7. Test secured access to the Web Solution by trying to reach       
 
        https://<your￾domain-name.com>
    
