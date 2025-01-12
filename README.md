@@ -124,8 +124,10 @@ Load Balancer Solution With Nginx and SSL/TLS
       include /etc/nginx/sites-enabled/*;
     
     
+  Test that the files are ok:
 
-
+  
+      sudo nginx -t
 
 
   Now restart Nginx and make sure the service is up and running:
